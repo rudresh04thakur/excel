@@ -1,0 +1,23 @@
+extends ../../../views/admin_layout 
+block content 
+    .col-12
+        .box
+            .box-header.with-border
+                h3.box-title Export Data
+                // /.box-header
+            .box-body
+                .table-responsive
+                    table.tableList.table.table-bordered.table-striped(style='width:100%')
+                        thead
+                            tr
+                                each title in tableHeader 
+                                    th= title
+                        tbody
+                            each dItem in data
+                                tr
+                                    each tTitle in tableHeader
+                                        td= dItem[tTitle]
+                        tfoot
+                            tr.searchFilter
+                                each title in tableHeader 
+                                    th= title
