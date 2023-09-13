@@ -3,6 +3,8 @@ const { API_PREFIX } = require('config');
 const { AuthRoutes,AuthFrontRoutes } = require('../modules/auth/auth.module');
 const { UserRoutes } = require('../modules/user/user.module');
 const { ExcelRoutes } = require('../modules/excel/excel.module');
+const { DashboardRoutes } = require('../modules/dashboard/dashboard.module');
+const { RoleRoutes } = require('../modules/roles/role.module');
 
 const routes = [
   {
@@ -23,6 +25,16 @@ const routes = [
     excludeAPIPrefix: true,
     path: '/filter',
     route: ExcelRoutes,
+  },
+  {
+    excludeAPIPrefix: true,
+    path: '/dashboard',
+    route: DashboardRoutes,
+  },
+  {
+    excludeAPIPrefix: true,
+    path: '/roles',
+    route: RoleRoutes,
   }
 ];
 

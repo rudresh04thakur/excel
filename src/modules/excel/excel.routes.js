@@ -19,8 +19,8 @@ module.exports = ({
 }) => {
   router.get(
     '/',
+    sessionChecker,
     makeExpressCallback(ExcelController.readExcel),
-    sessionChecker
   );
   return router;
 };

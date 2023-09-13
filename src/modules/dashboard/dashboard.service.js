@@ -1,6 +1,8 @@
-const bcrypt = require('bcryptjs');
-const User = require('../../db/models/User');
-const JwtService = require('./jwt.service');
+const fs = require('fs');
+const xlsx = require('xlsx');
+const path = require('path');
+const Role = require('../../db/models/Role');
+
 const { BadRequestError, NotFoundError } = require('../../utils/api-errors');
 
 const DashboardService = {
@@ -12,33 +14,32 @@ const DashboardService = {
    * @returns {Context} Context object
    * @throws {NotFoundError} If the user is not found.
    */
-  list: async (requestBody) => {
-    const { phone, password } = requestBody;
-    const user = await User.findOne({
-      where: {
-        email,
-      },
-    });
-    if (!user) {
-      throw new NotFoundError('User not found');
-    }
-    const isValidPass = bcrypt.compareSync(password, user.password);
-    if (!isValidPass) {
-      throw new BadRequestError('Username or Password is invalid!');
-    }
-
-    const payload = {
-      employeeCode: user.id,
-      role: user.role,
-    };
-
-    const accessToken = await JwtService.generateJWT({
-      payload,
-    });
-    return {
-      accessToken,
-      ...payload,
-    };
+  getAnalytics: async (requestBody) => {
+    const workbook = xlsx.readFile('src/public/uploads/data.xlsx');
+    let workbook_sheet = workbook.SheetNames;
+    let workbook_response = xlsx.utils.sheet_to_json(
+      workbook.Sheets[workbook_sheet[0]]
+    );
+    //var filteredData = []
+    var pieData = {}
+    // if(requestBody.session.profile.roleLabel.toLowerCase() == 'admin'){
+    //   //filteredData = workbook_response
+    // }else{
+      workbook_response.filter((row)=>{
+        if(pieData.hasOwnProperty(row['invoiceprocessstatus'])!=false){
+          pieData[row['invoiceprocessstatus']]=pieData[row['invoiceprocessstatus']]+1
+        }else{
+          piData = {
+            [row['invoiceprocessstatus']]:0,
+            ...pieData
+          }
+          console.log("ttt ",pieData);
+        }
+      });
+    // }
+    
+    
+    return
   },
 };
 

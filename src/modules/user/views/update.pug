@@ -38,11 +38,10 @@ block content
                             .form-group
                                 label.form-label Role
                                 select.form-select(name='role' value=user.role)
-                                    option(value='0') User
-                                    option(value='1') HR
-                                    option(value='2') Accountant
-                                    option(value='3') Manager
-                                    option(value='4') Admin
+                                    - for(i=0;i<roles.length;i++){
+                                        option(value=roles[i].number)=roles[i].label
+                                    - }
+                                    option(value='0') Admin
                 .box-footer.pull-right
                     button.btn.btn-warning.me-1(type='button')
                         i.ti-trash

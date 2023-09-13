@@ -1,6 +1,8 @@
 const fs = require('fs');
-const xlsx = require('xlsx'); 
-const  path = require('path');
+const xlsx = require('xlsx');
+const path = require('path');
+const Role = require('../../db/models/Role');
+
 const ExcelService = {
   /**
    * Logs in a user and generates a token.
@@ -11,12 +13,18 @@ const ExcelService = {
    * @throws {NotFoundError} If the user is not found.
    */
   readExcel: async (requestBody) => {
-    const workbook = xlsx.readFile('src/public/uploads/data.xlsx');  
-    let workbook_sheet = workbook.SheetNames;                
+    const workbook = xlsx.readFile('src/public/uploads/data.xlsx');
+    let workbook_sheet = workbook.SheetNames;
     let workbook_response = xlsx.utils.sheet_to_json(
       workbook.Sheets[workbook_sheet[0]]
     );
-    return workbook_response;
+    var filteredData = []
+    if(requestBody.session.profile.roleLabel.toLowerCase() == 'admin'){
+      filteredData = workbook_response
+    }else{
+      filteredData = workbook_response.filter(row => row['Contract'].toLowerCase() == requestBody.session.profile.roleLabel.toLowerCase());
+    }
+    return filteredData;
   },
 };
 

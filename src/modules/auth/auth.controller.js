@@ -33,6 +33,10 @@ const AuthController = {
       ...httpRequest.body
     });
     return helper.generateResponse(passwordData);
+  },
+  doLogout: async (requestBody) => {
+    requestBody.session.destroy();
+    return true;
   }
 };
 

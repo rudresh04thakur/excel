@@ -10,8 +10,10 @@ const DashboardController = {
    * @returns {Promise.<ControllerResponse> }
    */
   list: async (httpRequest) => {
-    const loginData = await DashboardService.list(httpRequest.body);
-    return helper.generateResponse(loginData);
+    const analytics = await DashboardService.getAnalytics({
+      ...httpRequest
+    });
+    return { returnType: 'render', path: 'dashboard-list', options : {data : analytics}}
   },
 };
 

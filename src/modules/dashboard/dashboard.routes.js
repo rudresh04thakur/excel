@@ -6,6 +6,7 @@
  * @param {DashboardValidator} DashboardRouter.DashboardValidator
  * @param {makeExpressCallback} DashboardRouter.makeExpressCallback
  * @param {makeValidatorCallback} DashboardRouter.makeValidatorCallback
+ * @param {sessionChecker} ExcelRouter.sessionChecker
  * @returns {ExpressRouter}
  */
 module.exports = ({
@@ -14,9 +15,11 @@ module.exports = ({
   DashboardValidator,
   makeValidatorCallback,
   makeExpressCallback,
+  sessionChecker
 }) => {
-  router.post(
+  router.get(
     '/',
+    sessionChecker,
     makeExpressCallback(DashboardController.list)
   );
   return router;

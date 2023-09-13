@@ -1,0 +1,82 @@
+extends ../../../views/admin_layout 
+block content 
+    .row
+        .col-12
+            .box
+                .box-header
+                    .row
+                        .col-6
+                            h4.box-title Anylatics 
+                .box-body
+                    .row 
+                        .col-md-6.col-lg-4
+                            .box
+                                .box-header.with-border
+                                    h5.box-title Top Advertisers
+                                .box-body
+                                    .text-center.py-20
+                                        .donut(data-peity='{ "fill": ["#ff4c52", "#faa700", "#3e8ef7","#3e8877"], "radius": 78, "innerRadius": 50  }') 9,6,5,8
+                                    ul.list-inline
+                                        li.flexbox.mb-5
+                                            div
+                                                span.badge.badge-dot.badge-lg.me-1(style='background-color: #ff4c52')
+                                                //span Abu Dhabi
+                                            div 8952
+                                        li.flexbox.mb-5
+                                            div
+                                                span.badge.badge-dot.badge-lg.me-1(style='background-color: #faa700')
+                                                //span Miami
+                                            div 7458
+                                        li.flexbox
+                                            div
+                                                span.badge.badge-dot.badge-lg.me-1(style='background-color: #3e8ef7')
+                                                //span London
+                                            div 3254
+                        - if(profile.roleLabel == 'admin'){
+                            .col-md-6.col-lg-4
+                                .box
+                                    .box-header.with-border
+                                        h5.box-title Top Advertisers
+                                    .box-body
+                                        .text-center.py-20
+                                            .donut(data-peity='{ "fill": ["#ff4c52", "#faa700", "#3e8ef7"], "radius": 78, "innerRadius": 50  }') 9,6,7
+                                        ul.list-inline
+                                            li.flexbox.mb-5
+                                                div
+                                                    span.badge.badge-dot.badge-lg.me-1(style='background-color: #ff4c52')
+                                                    //span Abu Dhabi
+                                                div 8952
+                                            li.flexbox.mb-5
+                                                div
+                                                    span.badge.badge-dot.badge-lg.me-1(style='background-color: #faa700')
+                                                    //span Miami
+                                                div 7458
+                                            li.flexbox
+                                                div
+                                                    span.badge.badge-dot.badge-lg.me-1(style='background-color: #3e8ef7')
+                                                    //span London
+                                                div 3254
+                            .col-md-6.col-lg-4
+                                .box
+                                    .box-header.with-border
+                                        h5.box-title Top Advertisers
+                                    .box-body
+                                        .text-center.py-20
+                                            .donut(data-peity='{ "fill": ["#ff4c52", "#faa700", "#3e8ef7"], "radius": 78, "innerRadius": 50  }') 9,6,5
+                                        ul.list-inline
+                                            li.flexbox.mb-5
+                                                div
+                                                    span.badge.badge-dot.badge-lg.me-1(style='background-color: #ff4c52')
+                                                    //span Abu Dhabi
+                                                div 8952
+                                            li.flexbox.mb-5
+                                                div
+                                                    span.badge.badge-dot.badge-lg.me-1(style='background-color: #faa700')
+                                                    //span Miami
+                                                div 7458
+                                            li.flexbox
+                                                div
+                                                    span.badge.badge-dot.badge-lg.me-1(style='background-color: #3e8ef7')
+                                                    //span London
+                                                div 3254
+                        - }

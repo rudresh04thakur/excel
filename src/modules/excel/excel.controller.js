@@ -13,7 +13,6 @@ const ExcelController = {
     const excelData = await ExcelService.readExcel({
       ...httpRequest
     });
-    console.log("test ------------------------------------------ ", Object.keys(excelData[0]))
     return { returnType: 'render', path: 'excel', options: { tableHeader: Object.keys(excelData[0]), data: excelData } }
   },
 };
