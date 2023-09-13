@@ -33,7 +33,9 @@ const DashboardService = {
             [row['invoiceprocessstatus']]:0,
             ...pieData
           }
-          console.log("ttt ",pieData);
+          // console.log("ttt ",{
+          //   [row['invoiceprocessstatus']]:0
+          // });
         }
       });
     // }
